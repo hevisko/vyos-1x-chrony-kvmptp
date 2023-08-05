@@ -56,3 +56,8 @@ bindaddress {{ address }}
 binddevice {{ interface }}
 {%     endif %}
 {% endif %}
+
+{% if enable_ptp_kvm if vyos_defined %}
+refclock PHC /dev/ptp_kvm poll 3 dpoll -2 offset 0
+makestep 0.1 -1
+{% endif %}
