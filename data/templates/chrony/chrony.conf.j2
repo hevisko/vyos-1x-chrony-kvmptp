@@ -58,6 +58,8 @@ binddevice {{ interface }}
 {% endif %}
 
 {% if enable_ptp_kvm if vyos_defined %}
+#The kernel module related configuration
 refclock PHC /dev/ptp_kvm poll 3 dpoll -2 offset 0
+#The VM pause/restarting, will recover faster with these - the assumption is we will always loose
 makestep 0.1 -1
 {% endif %}
